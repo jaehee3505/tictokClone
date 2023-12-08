@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tictok_app/constants/Sizes.dart';
 
-
 class Gaps {
   // Vertical Gaps
   static const v1 = SizedBox(height: Sizes.size1);
