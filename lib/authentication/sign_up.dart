@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tictok_app/authentication/email_screen.dart';
+import 'package:tictok_app/authentication/username_screen.dart';
 import 'package:tictok_app/authentication/login.dart';
 import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
@@ -21,7 +21,7 @@ class SignUpScreen extends StatelessWidget {
   void _onEmailTap(BuildContext context) {
     print('버튼 클릭');
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => EmailScreen()));
+        .push(MaterialPageRoute(builder: (context) => UsernameScreen()));
   }
 
   @override
