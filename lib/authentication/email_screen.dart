@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tictok_app/authentication/email_screen.dart';
 import 'package:tictok_app/authentication/widgets/form_button.dart';
 import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
 
-class UsernameScreen extends StatefulWidget {
-  const UsernameScreen({super.key});
+class EmailScreen extends StatefulWidget {
+  const EmailScreen({super.key});
 
   @override
-  State<UsernameScreen> createState() => _EmailScreenState();
+  State<EmailScreen> createState() => _EmailScreenState();
 }
 
-class _EmailScreenState extends State<UsernameScreen> {
+class _EmailScreenState extends State<EmailScreen> {
   TextEditingController usernameController = TextEditingController();
   String username = '';
   @override
@@ -32,7 +31,6 @@ class _EmailScreenState extends State<UsernameScreen> {
   }
 
   void onEmailTap() {
-    if (username.isEmpty) return;
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => EmailScreen()));
   }
@@ -51,24 +49,17 @@ class _EmailScreenState extends State<UsernameScreen> {
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Gaps.v20,
-          Text('Create username',
+          Text('What is your email?',
               style: TextStyle(
                   fontSize: Sizes.size24,
                   fontWeight: FontWeight.w600,
                   color: Colors.black)),
-          Gaps.v5,
-          Text(
-            'You can always change this later',
-            style: TextStyle(
-              fontSize: Sizes.size16,
-            ),
-          ),
           Gaps.v10,
           TextField(
             controller: usernameController,
             cursorColor: Theme.of(context).primaryColor,
             decoration: InputDecoration(
-                hintText: 'Username',
+                hintText: 'Email',
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.grey,
