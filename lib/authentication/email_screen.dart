@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tictok_app/authentication/password_screen.dart';
 import 'package:tictok_app/authentication/widgets/form_button.dart';
 import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
@@ -11,24 +12,24 @@ class EmailScreen extends StatefulWidget {
 }
 
 class _EmailScreenState extends State<EmailScreen> {
-  TextEditingController usernameController = TextEditingController();
-  String username = '';
+  TextEditingController emailController = TextEditingController();
+  String email = '';
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    usernameController.addListener(() {
+    emailController.addListener(() {
       setState(() {
-        username = usernameController.text;
+        email = emailController.text;
       });
     });
   }
 
   String? isEmailValid() {
-    if (username.isEmpty) return null;
+    if (email.isEmpty) return null;
     final regExp = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-    if (!regExp.hasMatch(username)) {
+    if (!regExp.hasMatch(email)) {
       return 'Invalid Email';
     }
     return null;
@@ -36,12 +37,21 @@ class _EmailScreenState extends State<EmailScreen> {
 
   @override
   void dispose() {
-    usernameController.dispose();
+    emailController.dispose();
     super.dispose();
   }
 
   void onScaffoldTap() {
     FocusScope.of(context).unfocus();
+  }
+
+  void onPasswordTap() {
+    if (email.isNotEmpty && (isEmailValid() == null)) {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => PasswordScreen()));
+    } else {
+      return;
+    }
   }
 
   @override
@@ -68,26 +78,28 @@ class _EmailScreenState extends State<EmailScreen> {
                     color: Colors.black)),
             Gaps.v10,
             TextField(
-              controller: usernameController,
+              keyboardType: TextInputType.emailAddress,
+              controller: emailController,
               cursorColor: Theme.of(context).primaryColor,
               decoration: InputDecoration(
-                  errorText: isEmailValid(),
-                  hintText: 'Email',
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey,
-                    ),
+                errorText: isEmailValid(),
+                hintText: 'Email',
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey,
                   ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey,
-                    ),
-                  )),
+                ),
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
             ),
             Gaps.v20,
             FormButton(
-              onTap: () {},
-              isDisable: username.isEmpty,
+              onTap: onPasswordTap,
+              isDisable: !(email.isNotEmpty && (isEmailValid() == null)),
             )
           ]),
         ),
