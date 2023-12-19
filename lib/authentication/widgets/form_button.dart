@@ -6,11 +6,12 @@ class FormButton extends StatelessWidget {
     super.key,
     required this.isDisable,
     required this.onTap,
+    required this.text,
   });
 
   final bool isDisable;
   final void Function() onTap;
-
+  final String text;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -37,7 +38,7 @@ class FormButton extends StatelessWidget {
               color: isDisable ? Colors.black : Colors.white,
             ),
             child: Text(
-              'Next',
+              text,
             ),
           ),
         ),

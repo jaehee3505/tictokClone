@@ -96,6 +96,7 @@ class _EmailScreenState extends State<UsernameScreen> {
             ),
             Gaps.v20,
             FormButton(
+              text: 'Next',
               onTap: onEmailTap,
               isDisable: username.isEmpty,
             )

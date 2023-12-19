@@ -98,6 +98,7 @@ class _EmailScreenState extends State<BirthdayScreen> {
               ),
               Gaps.v20,
               FormButton(
+                text: 'Next',
                 onTap: onBirthdayTap,
                 isDisable: false,
               ),

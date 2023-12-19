@@ -146,6 +146,7 @@ class _EmailScreenState extends State<PasswordScreen> {
             ),
             Gaps.v20,
             FormButton(
+              text: 'Next',
               onTap: onBirthdayTap,
               isDisable: !isPasswordLength(),
             )
