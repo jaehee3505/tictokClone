@@ -57,8 +57,11 @@ class _EmailScreenState extends State<PasswordScreen> {
 
   void onBirthdayTap() {
     if (isPasswordLength()) {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => BirthdayScreen()));
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => BirthdayScreen(),
+        ),
+      );
     }
   }
 

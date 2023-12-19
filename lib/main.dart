@@ -3,7 +3,9 @@ import 'package:tictok_app/authentication/sign_up_screen.dart';
 import 'package:tictok_app/constants/Sizes.dart';
 
 void main() {
-  runApp(const TicTokApp());
+  runApp(
+    const TicTokApp(),
+  );
 }
 
 class TicTokApp extends StatelessWidget {
@@ -23,6 +25,10 @@ class TicTokApp extends StatelessWidget {
               fontWeight: FontWeight.w600,
               fontSize: Sizes.size16 + Sizes.size2,
             ),
+          ),
+          bottomAppBarTheme: BottomAppBarTheme(
+            color: Colors.white,
+            elevation: 0,
           ),
           primaryColor: const Color(0xFFE9435A),
           scaffoldBackgroundColor: Colors.white),
