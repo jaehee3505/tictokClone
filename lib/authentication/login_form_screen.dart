@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tictok_app/authentication/onboarding/interests_screen.dart';
 import 'package:tictok_app/authentication/widgets/form_button.dart';
 import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
@@ -10,19 +11,20 @@ class LoginFormScreen extends StatefulWidget {
   State<LoginFormScreen> createState() => _LoginFormScreenState();
 }
 
-GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-Map<String, String> formData = {};
+class _LoginFormScreenState extends State<LoginFormScreen> {
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  Map<String, String> formData = {};
 
-void onSubmitTap() {
-  if (_formKey.currentState != null) {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-      print('fomrData = $formData');
+  void onSubmitTap() {
+    if (_formKey.currentState != null) {
+      if (_formKey.currentState!.validate()) {
+        _formKey.currentState!.save();
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => InterestsScreen()));
+      }
     }
   }
-}
 
-class _LoginFormScreenState extends State<LoginFormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,6 +41,9 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
                 TextFormField(
                   decoration: InputDecoration(hintText: 'Email'),
                   validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return 'i don\'t like email';
+                    }
                     return null;
                   },
                   onSaved: (newValue) {
@@ -51,6 +56,9 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
                 TextFormField(
                   decoration: InputDecoration(hintText: 'Password'),
                   validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return 'wrong password';
+                    }
                     return null;
                   },
                   onSaved: (newValue) {
