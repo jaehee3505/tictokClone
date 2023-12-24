@@ -3,8 +3,47 @@ import 'package:tictok_app/authentication/widgets/form_button.dart';
 import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
 
-class InterestsScreen extends StatelessWidget {
+import '../widgets/interest_button.dart';
+
+class InterestsScreen extends StatefulWidget {
   const InterestsScreen({super.key});
+
+  @override
+  State<InterestsScreen> createState() => _InterestsScreenState();
+}
+
+class _InterestsScreenState extends State<InterestsScreen> {
+  ScrollController _scrollController = ScrollController();
+
+  bool _showTitle = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(() {
+      if (_scrollController.offset > 100) {
+        if (!_showTitle) {
+          setState(() {
+            _showTitle = true;
+            print('${_scrollController.offset}');
+          });
+        }
+      } else {
+        if (_showTitle) {
+          setState(() {
+            _showTitle = false;
+            print('${_scrollController.offset}');
+          });
+        }
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,52 +92,44 @@ class InterestsScreen extends StatelessWidget {
         elevation: 0,
         scrolledUnderElevation: 0,
         backgroundColor: Colors.white,
-        title: Text('Choose your interests'),
+        title: AnimatedOpacity(
+            duration: Duration(milliseconds: 300),
+            opacity: _showTitle ? 1 : 0,
+            child: Text('Choose your interests')),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: Sizes.size24,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Choose your interests',
-                style: TextStyle(
-                    fontSize: Sizes.size40, fontWeight: FontWeight.bold),
-              ),
-              Gaps.v20,
-              Text('Get better video recommendations',
+      body: Scrollbar(
+        controller: _scrollController,
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: Sizes.size24,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Choose your interests',
                   style: TextStyle(
-                    fontSize: Sizes.size20,
-                  )),
-              Gaps.v10,
-              Wrap(
-                spacing: 20,
-                runSpacing: 20,
-                children: [
-                  for (var interest in interests)
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        vertical: Sizes.size10,
-                        horizontal: Sizes.size24,
-                      ),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(100),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black.withOpacity(0.05),
-                                blurRadius: 5,
-                                spreadRadius: 5),
-                          ]),
-                      child: Text('$interest'),
-                    )
-                ],
-              ),
-              Gaps.v40,
-            ],
+                      fontSize: Sizes.size40, fontWeight: FontWeight.bold),
+                ),
+                Gaps.v20,
+                Text('Get better video recommendations',
+                    style: TextStyle(
+                      fontSize: Sizes.size20,
+                    )),
+                Gaps.v10,
+                Wrap(
+                  spacing: 20,
+                  runSpacing: 20,
+                  children: [
+                    for (var interest in interests)
+                      InterestButton(interest: interest)
+                  ],
+                ),
+                Gaps.v40,
+              ],
+            ),
           ),
         ),
       ),
