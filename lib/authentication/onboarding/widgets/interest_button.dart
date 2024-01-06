@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/Sizes.dart';
+import '../../../constants/Sizes.dart';
 
 class InterestButton extends StatefulWidget {
   const InterestButton({

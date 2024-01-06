@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tictok_app/authentication/onboarding/tutorial_screen.dart';
+import 'package:tictok_app/authentication/onboarding/widgets/interest_button.dart';
 import 'package:tictok_app/authentication/widgets/form_button.dart';
 import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
-
-import '../widgets/interest_button.dart';
 
 class InterestsScreen extends StatefulWidget {
   const InterestsScreen({super.key});
@@ -17,26 +17,31 @@ class _InterestsScreenState extends State<InterestsScreen> {
 
   bool _showTitle = false;
 
+  void _onScroll() {
+    if (_scrollController.offset > 100 && !_showTitle) {
+      setState(() {
+        _showTitle = true;
+        print('${_scrollController.offset}');
+      });
+    } else {
+      if (_showTitle) {
+        setState(() {
+          _showTitle = false;
+          print('${_scrollController.offset}');
+        });
+      }
+    }
+  }
+
+  void _onNextTap() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => TutorialScreen()));
+  }
+
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(() {
-      if (_scrollController.offset > 100) {
-        if (!_showTitle) {
-          setState(() {
-            _showTitle = true;
-            print('${_scrollController.offset}');
-          });
-        }
-      } else {
-        if (_showTitle) {
-          setState(() {
-            _showTitle = false;
-            print('${_scrollController.offset}');
-          });
-        }
-      }
-    });
+    _scrollController.addListener(_onScroll);
   }
 
   @override
@@ -141,14 +146,17 @@ class _InterestsScreenState extends State<InterestsScreen> {
             left: Sizes.size20,
             right: Sizes.size20),
         height: 110,
-        child: Container(
-          alignment: Alignment.center,
-          color: Theme.of(context).primaryColor,
-          child: Text(
-            'Next',
-            style: TextStyle(
-              fontSize: Sizes.size14,
-              color: Colors.white,
+        child: GestureDetector(
+          onTap: _onNextTap,
+          child: Container(
+            alignment: Alignment.center,
+            color: Theme.of(context).primaryColor,
+            child: Text(
+              'Next',
+              style: TextStyle(
+                fontSize: Sizes.size14,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
