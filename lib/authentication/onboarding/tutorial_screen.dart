@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tictok_app/constants/Sizes.dart';
 
@@ -10,23 +11,7 @@ class TutorialScreen extends StatefulWidget {
   State<TutorialScreen> createState() => _MyWidgetState();
 }
 
-class _MyWidgetState extends State<TutorialScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        body: SafeArea(
-          child: TabBarView(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: Sizes.size24,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Gaps.v52,
+/*
                     Text(
                       'Watch cool videos!',
                       style: TextStyle(
@@ -39,19 +24,62 @@ class _MyWidgetState extends State<TutorialScreen> {
                         fontSize: Sizes.size20,
                       ),
                     )
-                  ],
-                ),
+
+*/
+
+enum SwipeDirection { right, left }
+
+enum PageLocation { first, second }
+
+class _MyWidgetState extends State<TutorialScreen> {
+  SwipeDirection swipeDirection = SwipeDirection.right;
+  PageLocation showInPage = PageLocation.first;
+  void _onPenUpdate(DragUpdateDetails details) {
+    if (details.delta.dx > 0) {
+      setState(() {
+        swipeDirection = SwipeDirection.right;
+        print('왼쪽으로 스와이프');
+      });
+    } else {
+      setState(() {
+        swipeDirection = SwipeDirection.left;
+        print('오른쪽으로 스와이프');
+      });
+    }
+  }
+
+  void _onPenEnd(DragEndDetails details) {
+    if (swipeDirection == SwipeDirection.right) {
+      setState(() {
+        print('두 번째 페이지 노출');
+        showInPage = PageLocation.first;
+      });
+    } else {
+      setState(() {
+        print('첫 번째 페이지 노출');
+        showInPage = PageLocation.second;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onPanUpdate: _onPenUpdate,
+      onPanEnd: _onPenEnd,
+      child: Scaffold(
+        body: SafeArea(
+          child: AnimatedCrossFade(
+            firstChild: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: Sizes.size16,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: Sizes.size24,
-                ),
-                child: Column(
+              child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Gaps.v52,
+                    Gaps.v40,
                     Text(
-                      'Follow the rules of the app',
+                      'Watch cool videos!',
                       style: TextStyle(
                           fontSize: Sizes.size40, fontWeight: FontWeight.bold),
                     ),
@@ -62,45 +90,48 @@ class _MyWidgetState extends State<TutorialScreen> {
                         fontSize: Sizes.size20,
                       ),
                     )
-                  ],
-                ),
+                  ]),
+            ),
+            secondChild: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: Sizes.size16,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: Sizes.size24,
-                ),
-                child: Column(
+              child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Gaps.v52,
+                    Gaps.v40,
                     Text(
-                      'Enjoy the ride',
+                      'Follow the rules',
                       style: TextStyle(
                           fontSize: Sizes.size40, fontWeight: FontWeight.bold),
                     ),
                     Gaps.v16,
                     Text(
-                      'Videos are personalized for you based on what you watch, like, and share.',
+                      'Take car of one another! Plis!',
                       style: TextStyle(
                         fontSize: Sizes.size20,
                       ),
                     )
-                  ],
-                ),
-              ),
-            ],
+                  ]),
+            ),
+            crossFadeState: showInPage == PageLocation.first
+                ? CrossFadeState.showFirst
+                : CrossFadeState.showSecond,
+            duration: Duration(milliseconds: 300),
           ),
         ),
         bottomNavigationBar: BottomAppBar(
-            height: Sizes.size48 + Sizes.size48 + Sizes.size20,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TabPageSelector(
-                  selectedColor: Colors.black38,
-                )
-              ],
-            )),
+          height: Sizes.size48 + Sizes.size24,
+          child: AnimatedOpacity(
+            duration: Duration(milliseconds: 300),
+            opacity: showInPage == PageLocation.first ? 0 : 1,
+            child: CupertinoButton(
+              color: Theme.of(context).primaryColor,
+              child: Text('Enter the app!'),
+              onPressed: () {},
+            ),
+          ),
+        ),
       ),
     );
   }
