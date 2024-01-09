@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -29,19 +30,22 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: screens[_currentIndex],
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: _currentIndex,
-          onDestinationSelected: onNavigationTap,
-          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-          destinations: [
-            NavigationDestination(
-                icon: FaIcon(FontAwesomeIcons.house), label: 'house'),
-            NavigationDestination(
-                icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
-                label: 'search'),
-          ],
-        ));
+    return CupertinoTabScaffold(
+        tabBar: CupertinoTabBar(items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              CupertinoIcons.home,
+            ),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(
+                CupertinoIcons.search,
+              ),
+              label: 'search'),
+        ]),
+        tabBuilder: (context, index) {
+          return screens[index];
+        });
   }
 }
