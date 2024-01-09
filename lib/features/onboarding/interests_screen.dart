@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tictok_app/authentication/onboarding/tutorial_screen.dart';
-import 'package:tictok_app/authentication/onboarding/widgets/interest_button.dart';
-import 'package:tictok_app/authentication/widgets/form_button.dart';
 import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
+import 'package:tictok_app/features/onboarding/tutorial_screen.dart';
+import 'package:tictok_app/features/onboarding/widgets/interest_button.dart';
 
 class InterestsScreen extends StatefulWidget {
   const InterestsScreen({super.key});

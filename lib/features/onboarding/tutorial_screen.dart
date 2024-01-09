@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
 
-import '../../constants/Gaps.dart';
+import '../navigation/main_navigation_screen.dart';
 
 class TutorialScreen extends StatefulWidget {
   const TutorialScreen({super.key});
@@ -46,6 +47,12 @@ class _MyWidgetState extends State<TutorialScreen> {
         print('오른쪽으로 스와이프');
       });
     }
+  }
+
+  void _onEnterAppTap() {
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => MainNavigationScreen()),
+        (route) => false);
   }
 
   void _onPenEnd(DragEndDetails details) {
@@ -128,7 +135,7 @@ class _MyWidgetState extends State<TutorialScreen> {
             child: CupertinoButton(
               color: Theme.of(context).primaryColor,
               child: Text('Enter the app!'),
-              onPressed: () {},
+              onPressed: _onEnterAppTap,
             ),
           ),
         ),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tictok_app/authentication/login_form_screen.dart';
 
 import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
 
-import 'package:tictok_app/authentication/widgets/authButton.dart';
+import 'package:tictok_app/features/authentication/login_form_screen.dart';
+import 'package:tictok_app/features/authentication/widgets/authButton.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

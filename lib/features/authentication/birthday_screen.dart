@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tictok_app/authentication/email_screen.dart';
-import 'package:tictok_app/authentication/onboarding/interests_screen.dart';
-import 'package:tictok_app/authentication/widgets/form_button.dart';
+import 'package:tictok_app/features/authentication/email_screen.dart';
+import 'package:tictok_app/features/onboarding/interests_screen.dart';
+import 'package:tictok_app/features/authentication/widgets/form_button.dart';
 import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
 
@@ -38,11 +38,11 @@ class _EmailScreenState extends State<BirthdayScreen> {
   }
 
   void onBirthdayTap() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => InterestsScreen(),
-      ),
-    );
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => InterestsScreen(),
+        ),
+        (route) => false);
   }
 
   @override

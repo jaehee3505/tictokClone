@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tictok_app/authentication/onboarding/interests_screen.dart';
-import 'package:tictok_app/authentication/widgets/form_button.dart';
+import 'package:tictok_app/features/onboarding/interests_screen.dart';
+import 'package:tictok_app/features/authentication/widgets/form_button.dart';
 import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
 
@@ -19,8 +19,9 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
     if (_formKey.currentState != null) {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => InterestsScreen()));
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => InterestsScreen()),
+            (route) => false);
       }
     }
   }
