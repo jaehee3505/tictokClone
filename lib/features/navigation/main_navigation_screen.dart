@@ -23,31 +23,25 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   void onNavigationTap(int tapIndex) {
     setState(() {
       _currentIndex = tapIndex;
+      print('_currentIndex = $_currentIndex');
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: onNavigationTap,
-        currentIndex: _currentIndex,
-        type: BottomNavigationBarType.shifting,
-        selectedItemColor: Theme.of(context).primaryColor,
-        items: [
-          BottomNavigationBarItem(
-              tooltip: 'home!',
-              icon: FaIcon(FontAwesomeIcons.house),
-              backgroundColor: Colors.amber,
-              label: 'Home'),
-          BottomNavigationBarItem(
-              tooltip: 'search!',
-              icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
-              backgroundColor: Colors.pink,
-              label: 'Search'),
-        ],
-      ),
-    );
+        body: screens[_currentIndex],
+        bottomNavigationBar: NavigationBar(
+          selectedIndex: _currentIndex,
+          onDestinationSelected: onNavigationTap,
+          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+          destinations: [
+            NavigationDestination(
+                icon: FaIcon(FontAwesomeIcons.house), label: 'house'),
+            NavigationDestination(
+                icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
+                label: 'search'),
+          ],
+        ));
   }
 }
