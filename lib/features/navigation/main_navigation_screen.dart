@@ -21,6 +21,15 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
     Center(
       child: Text('Search'),
     ),
+    Center(
+      child: Text('Center'),
+    ),
+    Center(
+      child: Text('Inbox'),
+    ),
+    Center(
+      child: Text('Profile'),
+    ),
   ];
 
   void onNavigationTap(int tapIndex) {
@@ -33,6 +42,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: screens.elementAt(_currentIndex),
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
         child: Row(
@@ -41,21 +51,25 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             NavigationTap(
                 onTap: () => onNavigationTap(0),
                 icon: FontAwesomeIcons.house,
+                isSelectedIcon: FontAwesomeIcons.house,
                 text: 'Home',
                 isSelected: (_currentIndex == 0)),
             NavigationTap(
                 onTap: () => onNavigationTap(1),
-                icon: FontAwesomeIcons.magnifyingGlass,
+                icon: FontAwesomeIcons.compass,
+                isSelectedIcon: FontAwesomeIcons.solidCompass,
                 text: 'Search',
                 isSelected: (_currentIndex == 1)),
             NavigationTap(
                 onTap: () => onNavigationTap(3),
                 icon: FontAwesomeIcons.message,
+                isSelectedIcon: FontAwesomeIcons.solidMessage,
                 text: 'Inbox',
                 isSelected: (_currentIndex == 3)),
             NavigationTap(
                 onTap: () => onNavigationTap(4),
                 icon: FontAwesomeIcons.user,
+                isSelectedIcon: FontAwesomeIcons.solidUser,
                 text: 'Profile',
                 isSelected: (_currentIndex == 4)),
           ],
