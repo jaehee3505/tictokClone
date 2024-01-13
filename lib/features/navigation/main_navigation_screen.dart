@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/features/navigation/widgets/navigation_tab.dart';
+import 'package:tictok_app/features/navigation/widgets/stf_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -14,35 +15,33 @@ class MainNavigationScreen extends StatefulWidget {
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _currentIndex = 0;
 
-  List<Widget> screens = [
-    Center(
-      child: Text('Home'),
-    ),
-    Center(
-      child: Text('Search'),
-    ),
-    Center(
-      child: Text('Center'),
-    ),
-    Center(
-      child: Text('Inbox'),
-    ),
-    Center(
-      child: Text('Profile'),
-    ),
-  ];
-
   void onNavigationTap(int tapIndex) {
     setState(() {
       _currentIndex = tapIndex;
-      print('_currentIndex = $_currentIndex');
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens.elementAt(_currentIndex),
+      body: Stack(children: [
+        Offstage(
+          offstage: _currentIndex != 0,
+          child: StfScreen(),
+        ),
+        Offstage(
+          offstage: _currentIndex != 1,
+          child: StfScreen(),
+        ),
+        Offstage(
+          offstage: _currentIndex != 3,
+          child: StfScreen(),
+        ),
+        Offstage(
+          offstage: _currentIndex != 4,
+          child: StfScreen(),
+        ),
+      ]),
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
         child: Row(
