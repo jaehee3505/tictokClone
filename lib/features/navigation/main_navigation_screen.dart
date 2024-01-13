@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tictok_app/constants/Gaps.dart';
+import 'package:tictok_app/features/navigation/widgets/navigation_tab.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -30,22 +32,35 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoTabScaffold(
-        tabBar: CupertinoTabBar(items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              CupertinoIcons.home,
-            ),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(
-                CupertinoIcons.search,
-              ),
-              label: 'search'),
-        ]),
-        tabBuilder: (context, index) {
-          return screens[index];
-        });
+    return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.black,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            NavigationTap(
+                onTap: () => onNavigationTap(0),
+                icon: FontAwesomeIcons.house,
+                text: 'Home',
+                isSelected: (_currentIndex == 0)),
+            NavigationTap(
+                onTap: () => onNavigationTap(1),
+                icon: FontAwesomeIcons.magnifyingGlass,
+                text: 'Search',
+                isSelected: (_currentIndex == 1)),
+            NavigationTap(
+                onTap: () => onNavigationTap(3),
+                icon: FontAwesomeIcons.message,
+                text: 'Inbox',
+                isSelected: (_currentIndex == 3)),
+            NavigationTap(
+                onTap: () => onNavigationTap(4),
+                icon: FontAwesomeIcons.user,
+                text: 'Profile',
+                isSelected: (_currentIndex == 4)),
+          ],
+        ),
+      ),
+    );
   }
 }
