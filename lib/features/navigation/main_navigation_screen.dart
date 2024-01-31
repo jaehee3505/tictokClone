@@ -15,11 +15,11 @@ class MainNavigationScreen extends StatefulWidget {
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  int _currentIndex = 0;
+  int _selectedIndex = 0;
 
   void onNavigationTap(int tapIndex) {
     setState(() {
-      _currentIndex = tapIndex;
+      _selectedIndex = tapIndex;
     });
   }
 
@@ -34,21 +34,22 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: _selectedIndex == 0 ? Colors.black : Colors.white,
       body: Stack(children: [
         Offstage(
-          offstage: _currentIndex != 0,
+          offstage: _selectedIndex != 0,
           child: TimelineScreen(),
         ),
         Offstage(
-          offstage: _currentIndex != 1,
+          offstage: _selectedIndex != 1,
           child: Container(),
         ),
         Offstage(
-          offstage: _currentIndex != 3,
+          offstage: _selectedIndex != 3,
           child: Container(),
         ),
         Offstage(
-          offstage: _currentIndex != 4,
+          offstage: _selectedIndex != 4,
           child: Container(),
         ),
       ]),
@@ -62,13 +63,13 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 icon: FontAwesomeIcons.house,
                 isSelectedIcon: FontAwesomeIcons.house,
                 text: 'Home',
-                isSelected: (_currentIndex == 0)),
+                isSelected: (_selectedIndex == 0)),
             NavigationTap(
                 onTap: () => onNavigationTap(1),
                 icon: FontAwesomeIcons.compass,
                 isSelectedIcon: FontAwesomeIcons.solidCompass,
                 text: 'Search',
-                isSelected: (_currentIndex == 1)),
+                isSelected: (_selectedIndex == 1)),
             Gaps.h24,
             GestureDetector(
                 onTap: _onPostVideoButtonTap, child: PostVideoButton()),
@@ -78,13 +79,13 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 icon: FontAwesomeIcons.message,
                 isSelectedIcon: FontAwesomeIcons.solidMessage,
                 text: 'Inbox',
-                isSelected: (_currentIndex == 3)),
+                isSelected: (_selectedIndex == 3)),
             NavigationTap(
                 onTap: () => onNavigationTap(4),
                 icon: FontAwesomeIcons.user,
                 isSelectedIcon: FontAwesomeIcons.solidUser,
                 text: 'Profile',
-                isSelected: (_currentIndex == 4)),
+                isSelected: (_selectedIndex == 4)),
           ],
         ),
       ),

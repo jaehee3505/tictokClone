@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tictok_app/constants/Sizes.dart';
 import 'package:tictok_app/features/videos/widgets/video_button.dart';
+import 'package:tictok_app/features/videos/widgets/video_comments.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -64,7 +65,9 @@ class _VideoPostState extends State<VideoPost>
   }
 
   void _onVisibilityChanged(VisibilityInfo info) {
-    if (info.visibleFraction == 1 && !_videoPlayerController.value.isPlaying) {
+    if (info.visibleFraction == 1 &&
+        !_videoPlayerController.value.isPlaying &&
+        !_isPaused) {
       _videoPlayerController.play();
     }
   }
@@ -86,6 +89,15 @@ class _VideoPostState extends State<VideoPost>
     setState(() {
       _isSeeMore = !_isSeeMore;
     });
+  }
+
+  void _onCommentsTap(BuildContext context) async {
+    if (_videoPlayerController.value.isPlaying) {
+      _onTogglePause();
+    }
+    await showModalBottomSheet(
+        context: context, builder: (context) => VideoComments());
+    _onTogglePause();
   }
 
   @override
@@ -190,7 +202,10 @@ class _VideoPostState extends State<VideoPost>
                   Gaps.v24,
                   VideoButton(icon: FontAwesomeIcons.solidHeart, text: '2.9k'),
                   Gaps.v24,
-                  VideoButton(icon: FontAwesomeIcons.solidComment, text: '33k'),
+                  GestureDetector(
+                      onTap: () => _onCommentsTap(context),
+                      child: VideoButton(
+                          icon: FontAwesomeIcons.solidComment, text: '33k')),
                   Gaps.v24,
                   VideoButton(icon: FontAwesomeIcons.share, text: 'Share')
                 ],
