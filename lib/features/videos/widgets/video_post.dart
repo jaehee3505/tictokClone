@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tictok_app/constants/Sizes.dart';
+import 'package:tictok_app/features/videos/widgets/video_button.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
+
+import '../../../constants/Gaps.dart';
 
 class VideoPost extends StatefulWidget {
   const VideoPost({
@@ -21,7 +25,7 @@ class _VideoPostState extends State<VideoPost>
   final VideoPlayerController _videoPlayerController =
       VideoPlayerController.asset('assets/videos/videoSample01.mp4');
   late final AnimationController _animationController;
-
+  bool _isSeeMore = false;
   bool _isPaused = false;
   final Duration _animatedDuration = Duration(milliseconds: 500);
   void _onVideoChange() {
@@ -35,6 +39,7 @@ class _VideoPostState extends State<VideoPost>
 
   void _initVideoPlayer() async {
     await _videoPlayerController.initialize();
+    await _videoPlayerController.setLooping(true);
     setState(() {});
     _videoPlayerController.addListener(_onVideoChange);
   }
@@ -77,6 +82,12 @@ class _VideoPostState extends State<VideoPost>
     });
   }
 
+  void _onSeeMoreTap() {
+    setState(() {
+      _isSeeMore = !_isSeeMore;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return VisibilityDetector(
@@ -114,6 +125,76 @@ class _VideoPostState extends State<VideoPost>
               ),
             )),
           )),
+          Positioned(
+            bottom: 20,
+            left: 10,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '@네로',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: Sizes.size20,
+                  ),
+                ),
+                Gaps.v10,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: 200,
+                      child: Text(
+                        'This is my lesson This is my lesson This is my lesson',
+                        overflow: _isSeeMore ? null : TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: Sizes.size16,
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: _onSeeMoreTap,
+                      child: Text(
+                        _isSeeMore ? 'Make Short' : 'See More',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: Sizes.size16,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+              bottom: 20,
+              right: 10,
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    foregroundImage: NetworkImage(
+                        'https://avatars.githubusercontent.com/u/68673384?s=40&v=4'),
+                    radius: 25,
+                    backgroundColor: Colors.black87,
+                    child: Text(
+                      '네로',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: Sizes.size16,
+                      ),
+                    ),
+                  ),
+                  Gaps.v24,
+                  VideoButton(icon: FontAwesomeIcons.solidHeart, text: '2.9k'),
+                  Gaps.v24,
+                  VideoButton(icon: FontAwesomeIcons.solidComment, text: '33k'),
+                  Gaps.v24,
+                  VideoButton(icon: FontAwesomeIcons.share, text: 'Share')
+                ],
+              ))
         ],
       ),
     );
