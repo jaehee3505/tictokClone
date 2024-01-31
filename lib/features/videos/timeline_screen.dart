@@ -36,14 +36,26 @@ class _TimelineScreenState extends State<TimelineScreen> {
     super.dispose();
   }
 
+  Future<void> _onRefresh() {
+    return Future.delayed(
+      Duration(seconds: 5),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-        controller: _pageController,
-        onPageChanged: _onPageChange,
-        scrollDirection: Axis.vertical,
-        itemCount: _itemCount,
-        itemBuilder: (context, index) =>
-            VideoPost(onVideoFinished: _onVideoFinished, index: index));
+    return RefreshIndicator(
+      displacement: 40,
+      edgeOffset: 20,
+      onRefresh: _onRefresh,
+      color: Theme.of(context).primaryColor,
+      child: PageView.builder(
+          controller: _pageController,
+          onPageChanged: _onPageChange,
+          scrollDirection: Axis.vertical,
+          itemCount: _itemCount,
+          itemBuilder: (context, index) =>
+              VideoPost(onVideoFinished: _onVideoFinished, index: index)),
+    );
   }
 }
