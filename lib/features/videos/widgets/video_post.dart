@@ -96,7 +96,9 @@ class _VideoPostState extends State<VideoPost>
       _onTogglePause();
     }
     await showModalBottomSheet(
-        context: context, builder: (context) => VideoComments());
+        isScrollControlled: true,
+        context: context,
+        builder: (context) => VideoComments());
     _onTogglePause();
   }
 
