@@ -17,6 +17,10 @@ class TicTokApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+          textSelectionTheme: TextSelectionThemeData(
+            cursorColor: Colors.black,
+            selectionColor: Colors.grey,
+          ),
           appBarTheme: AppBarTheme(
             foregroundColor: Colors.black,
             backgroundColor: Colors.white,
