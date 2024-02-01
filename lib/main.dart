@@ -17,6 +17,8 @@ class TicTokApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+          splashColor: Colors.transparent, // 스플레시 효과 사라짐
+          // highlightColor: Colors.transparent, // 버튼 눌렀을때 물감혀과 사라짐
           textSelectionTheme: TextSelectionThemeData(
             cursorColor: Colors.black,
             selectionColor: Colors.grey,
