@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
 
-import '../navigation/main_navigation_screen.dart';
+import '../main_navigation/main_navigation_screen.dart';
 
 class TutorialScreen extends StatefulWidget {
   const TutorialScreen({super.key});

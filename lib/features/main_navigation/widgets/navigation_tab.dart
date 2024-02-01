@@ -10,8 +10,9 @@ class NavigationTap extends StatelessWidget {
     required this.isSelected,
     required this.onTap,
     required this.isSelectedIcon,
+    required this.selectedIndex,
   });
-
+  final int selectedIndex;
   final IconData icon;
   final IconData isSelectedIcon;
   final String text;
@@ -24,7 +25,7 @@ class NavigationTap extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          color: Colors.black,
+          color: selectedIndex == 0 ? Colors.black : Colors.white,
           child: AnimatedOpacity(
             duration: Duration(milliseconds: 300),
             opacity: isSelected ? 1 : 0.6,
@@ -33,12 +34,12 @@ class NavigationTap extends StatelessWidget {
               children: [
                 FaIcon(
                   isSelected ? isSelectedIcon : icon,
-                  color: Colors.white,
+                  color: selectedIndex == 0 ? Colors.white : Colors.black,
                 ),
                 Gaps.v10,
                 Text(text,
                     style: TextStyle(
-                      color: Colors.white,
+                      color: selectedIndex == 0 ? Colors.white : Colors.black,
                     )),
               ],
             ),

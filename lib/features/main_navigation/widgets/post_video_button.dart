@@ -5,8 +5,10 @@ import 'package:tictok_app/constants/Sizes.dart';
 class PostVideoButton extends StatelessWidget {
   const PostVideoButton({
     super.key,
+    required this.inverted,
   });
 
+  final bool inverted;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -38,12 +40,13 @@ class PostVideoButton extends StatelessWidget {
           width: 40,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(Sizes.size5),
-            color: Colors.white,
+            color: inverted ? Colors.white : Colors.black,
           ),
           child: Center(
             child: FaIcon(
               FontAwesomeIcons.plus,
               size: Sizes.size16,
+              color: inverted ? Colors.black : Colors.white,
             ),
           ),
         ),
