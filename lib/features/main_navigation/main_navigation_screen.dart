@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
+import 'package:tictok_app/features/discover/discover.dart';
 import 'package:tictok_app/features/main_navigation/widgets/navigation_tab.dart';
 import 'package:tictok_app/features/main_navigation/widgets/post_video_button.dart';
 import 'package:tictok_app/features/videos/timeline_screen.dart';
@@ -15,7 +16,7 @@ class MainNavigationScreen extends StatefulWidget {
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   void onNavigationTap(int tapIndex) {
     setState(() {
@@ -43,7 +44,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         ),
         Offstage(
           offstage: _selectedIndex != 1,
-          child: Container(),
+          child: DiscoverScreen(),
         ),
         Offstage(
           offstage: _selectedIndex != 3,
