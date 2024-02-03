@@ -19,10 +19,42 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
           title: ListTile(
         horizontalTitleGap: Sizes.size8,
         contentPadding: EdgeInsets.zero,
-        leading: CircleAvatar(
-          radius: 20,
-          foregroundImage: NetworkImage(MYGITHUBIMAGE),
-          child: Text('네로'),
+        leading: Stack(
+          children: [
+            CircleAvatar(
+              radius: 20,
+              foregroundImage: NetworkImage(MYGITHUBIMAGE),
+              child: Text('네로'),
+            ),
+            Positioned(
+                bottom: 0,
+                right: 0,
+                child: Stack(
+                  children: [
+                    Container(
+                      width: 15,
+                      height: 15,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white,
+                      ),
+                    ),
+                    Positioned.fill(
+                        child: Container(
+                      margin: EdgeInsets.all(
+                        Sizes.size2,
+                      ),
+                      alignment: Alignment.center,
+                      width: 13,
+                      height: 13,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.red,
+                      ),
+                    )),
+                  ],
+                ))
+          ],
         ),
         title: Text(
           '네로',
@@ -42,7 +74,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
             Gaps.h32,
             FaIcon(
               FontAwesomeIcons.ellipsis,
-              color: Colors.black,
+              color: const Color.fromARGB(255, 196, 193, 193),
               size: Sizes.size20,
             )
           ],
@@ -101,7 +133,14 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: TextField(),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          enabledBorder:
+                              OutlineInputBorder(borderSide: BorderSide.none),
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
+                      ),
                     ),
                     Gaps.h20,
                     Container(
