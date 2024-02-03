@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tictok_app/constants/Sizes.dart';
 import 'package:tictok_app/features/inbox/chat_detail_screen.dart';
+import 'package:tictok_app/main.dart';
 
 class ChatsScreen extends StatefulWidget {
   const ChatsScreen({super.key});
@@ -51,8 +52,7 @@ class _ChatScreenState extends State<ChatsScreen> {
       leading: CircleAvatar(
         radius: 25,
         child: Text('네로'),
-        foregroundImage: NetworkImage(
-            'https://avatars.githubusercontent.com/u/68673384?s=40&v=4'),
+        foregroundImage: NetworkImage(MYGITHUBIMAGE),
       ),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

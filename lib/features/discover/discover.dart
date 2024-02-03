@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tictok_app/constants/Sizes.dart';
+import 'package:tictok_app/main.dart';
 
 import '../../constants/Gaps.dart';
 
@@ -120,8 +121,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     children: [
                       CircleAvatar(
                         radius: 12,
-                        backgroundImage: NetworkImage(
-                            'https://avatars.githubusercontent.com/u/68673384?s=40&v=4'),
+                        backgroundImage: NetworkImage(MYGITHUBIMAGE),
                       ),
                       Gaps.h4,
                       Expanded(

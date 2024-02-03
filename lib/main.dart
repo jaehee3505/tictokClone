@@ -11,6 +11,9 @@ void main() {
   );
 }
 
+const String MYGITHUBIMAGE =
+    'https://avatars.githubusercontent.com/u/68673384?s=40&v=4';
+
 class TicTokApp extends StatelessWidget {
   const TicTokApp({super.key});
 
