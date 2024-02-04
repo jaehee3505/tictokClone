@@ -112,7 +112,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             fontSize: Sizes.size18,
           ),
         ),
-        Gaps.v,
+        Gaps.v3,
         Text('Likes',
             style: TextStyle(
               color: Colors.grey.shade500,
