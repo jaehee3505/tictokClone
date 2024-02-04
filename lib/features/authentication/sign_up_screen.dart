@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
@@ -45,12 +46,12 @@ class SignUpScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Gaps.v52,
-                  Text(
-                    'Sign Up for TicTok',
-                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                          color: Colors.red,
-                        ),
-                  ),
+                  Text('Sign Up for TicTok',
+                      style: GoogleFonts.abrilFatface(
+                          textStyle: TextStyle(
+                        fontSize: Sizes.size24,
+                        fontWeight: FontWeight.w700,
+                      ))),
                   Gaps.v24,
                   Opacity(
                     opacity: 0.7,
