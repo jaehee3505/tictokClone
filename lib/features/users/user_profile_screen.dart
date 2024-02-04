@@ -69,22 +69,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     indent: Sizes.size14,
                     endIndent: Sizes.size14,
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        '9723',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: Sizes.size18,
-                        ),
-                      ),
-                      Gaps.v5,
-                      Text('following',
-                          style: TextStyle(
-                            color: Colors.grey.shade500,
-                          ))
-                    ],
-                  ),
+                  UsersLikes(),
                   VerticalDivider(
                     width: Sizes.size32,
                     color: Colors.grey.shade400,
