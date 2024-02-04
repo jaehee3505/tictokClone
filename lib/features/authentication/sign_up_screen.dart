@@ -47,22 +47,16 @@ class SignUpScreen extends StatelessWidget {
                   Gaps.v52,
                   Text(
                     'Sign Up for TicTok',
-                    style: TextStyle(
-                      fontSize: Sizes.size24,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                          color: Colors.red,
+                        ),
                   ),
                   Gaps.v24,
                   Opacity(
                     opacity: 0.7,
                     child: Text(
                       'Create a profile, follow other accounts, make your own videos, and more.',
-                      style: TextStyle(
-                        fontSize: Sizes.size16,
-                        // color: isDarkMode(context)
-                        //     ? Colors.grey.shade300
-                        //     : Colors.black54,
-                      ),
+                      style: Theme.of(context).textTheme.titleMedium,
                       textAlign: TextAlign.center,
                     ),
                   ),
