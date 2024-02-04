@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
+import 'package:tictok_app/features/settings/settings_screen.dart';
 import 'package:tictok_app/features/users/widgets/persistent_tabbar.dart';
 import 'package:tictok_app/main.dart';
 
@@ -13,6 +14,11 @@ class UserProfileScreen extends StatefulWidget {
 }
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
+  void _onGearPressed() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => SettingsScreen()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -26,7 +32,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   title: Text('네로'),
                   actions: [
                     IconButton(
-                        onPressed: () {},
+                        onPressed: _onGearPressed,
                         icon: FaIcon(
                           FontAwesomeIcons.gear,
                           size: Sizes.size20,
