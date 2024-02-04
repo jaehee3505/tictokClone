@@ -95,7 +95,6 @@ class _InterestsScreenState extends State<InterestsScreen> {
       appBar: AppBar(
         elevation: 0,
         scrolledUnderElevation: 0,
-        backgroundColor: Colors.white,
         title: AnimatedOpacity(
             duration: Duration(milliseconds: 300),
             opacity: _showTitle ? 1 : 0,

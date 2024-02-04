@@ -33,7 +33,7 @@ class TicTokApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: ThemeData(
           brightness: Brightness.light,
-          textTheme: GoogleFonts.itimTextTheme(),
+          textTheme: Typography.blackMountainView,
           splashColor: Colors.transparent, // 스플레시 효과 사라짐
           // highlightColor: Colors.transparent, // 버튼 눌렀을때 물감혀과 사라짐
           textSelectionTheme: TextSelectionThemeData(
@@ -59,13 +59,15 @@ class TicTokApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white),
 
       darkTheme: ThemeData(
-        textTheme: GoogleFonts.itimTextTheme(
-            ThemeData(brightness: Brightness.dark).textTheme),
-        bottomAppBarTheme: BottomAppBarTheme(
-          color: Colors.grey.shade800,
-        ),
+        textTheme: Typography.whiteMountainView,
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.grey.shade900,
+        ),
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: Colors.grey.shade900,
+        ),
         primaryColor: const Color(0xFFE9435A),
       ),
       home: SignUpScreen(), //MainNavigationScreen()

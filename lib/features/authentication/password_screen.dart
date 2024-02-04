@@ -84,9 +84,9 @@ class _EmailScreenState extends State<PasswordScreen> {
             Gaps.v20,
             Text('Password',
                 style: TextStyle(
-                    fontSize: Sizes.size24,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black)),
+                  fontSize: Sizes.size24,
+                  fontWeight: FontWeight.w600,
+                )),
             Gaps.v10,
             TextField(
               controller: passwordController,

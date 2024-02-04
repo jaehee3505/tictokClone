@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
+import 'package:tictok_app/utils.dart';
 
 import '../main_navigation/main_navigation_screen.dart';
 
@@ -128,7 +129,12 @@ class _MyWidgetState extends State<TutorialScreen> {
           ),
         ),
         bottomNavigationBar: BottomAppBar(
-          height: Sizes.size48 + Sizes.size24,
+          padding: EdgeInsets.symmetric(
+            horizontal: 20,
+            vertical: 20,
+          ),
+          color: isDarkMode(context) ? Colors.black : Colors.white,
+          height: Sizes.size56 + Sizes.size36,
           child: AnimatedOpacity(
             duration: Duration(milliseconds: 300),
             opacity: showInPage == PageLocation.first ? 0 : 1,
