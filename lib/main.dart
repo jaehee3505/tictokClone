@@ -28,32 +28,43 @@ class TicTokApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            splashColor: Colors.transparent, // 스플레시 효과 사라짐
-            // highlightColor: Colors.transparent, // 버튼 눌렀을때 물감혀과 사라짐
-            textSelectionTheme: TextSelectionThemeData(
-              cursorColor: Colors.black,
-              selectionColor: Colors.grey,
+      debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.system,
+      theme: ThemeData(
+          brightness: Brightness.light,
+          splashColor: Colors.transparent, // 스플레시 효과 사라짐
+          // highlightColor: Colors.transparent, // 버튼 눌렀을때 물감혀과 사라짐
+          textSelectionTheme: TextSelectionThemeData(
+            cursorColor: Colors.black,
+            selectionColor: Colors.grey,
+          ),
+          appBarTheme: AppBarTheme(
+            foregroundColor: Colors.black,
+            backgroundColor: Colors.white,
+            centerTitle: true,
+            elevation: 0,
+            titleTextStyle: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w600,
+              fontSize: Sizes.size16 + Sizes.size2,
             ),
-            appBarTheme: AppBarTheme(
-              foregroundColor: Colors.black,
-              backgroundColor: Colors.white,
-              centerTitle: true,
-              elevation: 0,
-              titleTextStyle: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
-                fontSize: Sizes.size16 + Sizes.size2,
-              ),
-            ),
-            bottomAppBarTheme: BottomAppBarTheme(
-              color: Colors.white,
-              elevation: 0,
-            ),
-            primaryColor: const Color(0xFFE9435A),
-            scaffoldBackgroundColor: Colors.white),
-        home: MainNavigationScreen() //SignUpScreen(),
-        );
+          ),
+          bottomAppBarTheme: BottomAppBarTheme(
+            color: Colors.grey.shade50,
+            elevation: 0,
+          ),
+          primaryColor: const Color(0xFFE9435A),
+          scaffoldBackgroundColor: Colors.white),
+
+      darkTheme: ThemeData(
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: Colors.grey.shade800,
+        ),
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
+        primaryColor: const Color(0xFFE9435A),
+      ),
+      home: SignUpScreen(), //MainNavigationScreen()
+    );
   }
 }

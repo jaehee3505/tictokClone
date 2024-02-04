@@ -7,6 +7,7 @@ import 'package:tictok_app/constants/Sizes.dart';
 import 'package:tictok_app/features/authentication/login_screen.dart';
 import 'package:tictok_app/features/authentication/username_screen.dart';
 import 'package:tictok_app/features/authentication/widgets/authButton.dart';
+import 'package:tictok_app/utils.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -52,13 +53,18 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ),
                   Gaps.v24,
-                  Text(
-                    'Create a profile, follow other accounts, make your own videos, and more.',
-                    style: TextStyle(
-                      fontSize: Sizes.size16,
-                      color: Colors.black54,
+                  Opacity(
+                    opacity: 0.7,
+                    child: Text(
+                      'Create a profile, follow other accounts, make your own videos, and more.',
+                      style: TextStyle(
+                        fontSize: Sizes.size16,
+                        // color: isDarkMode(context)
+                        //     ? Colors.grey.shade300
+                        //     : Colors.black54,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
                   ),
                   Gaps.v40,
                   if (orientation == Orientation.portrait) ...[
@@ -108,7 +114,7 @@ class SignUpScreen extends StatelessWidget {
             ),
           ),
           bottomNavigationBar: BottomAppBar(
-            color: Colors.grey.shade50,
+            //color: Colors.grey.shade50,
             elevation: 2,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
