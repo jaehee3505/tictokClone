@@ -57,10 +57,15 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
         appBar: AppBar(
           elevation: 1,
           shadowColor: Colors.white,
-          title: CupertinoSearchTextField(
-            controller: _textEditingController,
-            onChanged: _onSearchChanged,
-            onSubmitted: _onSearchSubmitted,
+          title: Container(
+            constraints: BoxConstraints(
+              maxWidth: Breakpoints.sm,
+            ),
+            child: CupertinoSearchTextField(
+              controller: _textEditingController,
+              onChanged: _onSearchChanged,
+              onSubmitted: _onSearchSubmitted,
+            ),
           ),
           bottom: TabBar(
             onTap: (_) => _onDisapearKeyboard(),
