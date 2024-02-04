@@ -7,6 +7,7 @@ import 'package:tictok_app/features/discover/discover.dart';
 import 'package:tictok_app/features/inbox/inbox_screen.dart';
 import 'package:tictok_app/features/main_navigation/widgets/navigation_tab.dart';
 import 'package:tictok_app/features/main_navigation/widgets/post_video_button.dart';
+import 'package:tictok_app/features/users/user_profile_screen.dart';
 import 'package:tictok_app/features/videos/timeline_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class MainNavigationScreen extends StatefulWidget {
 }
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
-  int _selectedIndex = 3;
+  int _selectedIndex = 4;
 
   void onNavigationTap(int tapIndex) {
     setState(() {
@@ -53,7 +54,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         ),
         Offstage(
           offstage: _selectedIndex != 4,
-          child: Container(),
+          child: UserProfileScreen(),
         ),
       ]),
       bottomNavigationBar: BottomAppBar(
