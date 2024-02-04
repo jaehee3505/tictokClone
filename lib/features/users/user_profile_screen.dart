@@ -37,6 +37,14 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             ),
           ),
         ),
+        SliverToBoxAdapter(
+          child: Column(children: [
+            CircleAvatar(
+              backgroundColor: Colors.red,
+              radius: 20,
+            )
+          ]),
+        ),
         SliverFixedExtentList(
           // 위로 땡겼을때 줄어들게 해주는 것 추가
           delegate: SliverChildBuilderDelegate(
@@ -50,6 +58,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             ),
           ),
           itemExtent: 100,
+        ),
+        SliverPersistentHeader(
+          delegate: CustomDelegate(),
+          pinned: true,
         ),
         SliverGrid(
           delegate: SliverChildBuilderDelegate(
@@ -71,5 +83,37 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         )
       ],
     );
+  }
+}
+
+class CustomDelegate extends SliverPersistentHeaderDelegate {
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      color: Colors.indigo,
+      child: FractionallySizedBox(
+        heightFactor: 1,
+        child: Center(
+            child: Text(
+          'Title!!!',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        )),
+      ),
+    ); //throw UnimplementedError();
+  }
+
+  @override
+  double get maxExtent => 100; //throw UnimplementedError();
+
+  @override
+  double get minExtent => 50; //throw UnimplementedError();
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
+    //throw UnimplementedError();
   }
 }
