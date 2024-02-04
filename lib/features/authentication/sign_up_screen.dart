@@ -28,79 +28,114 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: Sizes.size32),
-          child: SizedBox(
-            width: double.infinity,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+      child: OrientationBuilder(
+          builder: (BuildContext context, Orientation orientation) {
+        // if (orientation == Orientation.landscape) {
+        //   return Scaffold(
+        //     body: Center(child: Text('Plz rotate ur phone')),
+        //   );
+        // }
+        return Scaffold(
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: Sizes.size32),
+            child: SizedBox(
+              width: double.infinity,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Gaps.v52,
+                  Text(
+                    'Sign Up for TicTok',
+                    style: TextStyle(
+                      fontSize: Sizes.size24,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Gaps.v24,
+                  Text(
+                    'Create a profile, follow other accounts, make your own videos, and more.',
+                    style: TextStyle(
+                      fontSize: Sizes.size16,
+                      color: Colors.black54,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  Gaps.v40,
+                  if (orientation == Orientation.portrait) ...[
+                    AuthButton(
+                      onTap: () => _onEmailTap(context),
+                      buttonTitle: 'Use email & password',
+                      buttonIcon: FaIcon(
+                        FontAwesomeIcons.user,
+                      ),
+                    ),
+                    Gaps.v14,
+                    AuthButton(
+                      onTap: () {},
+                      buttonTitle: 'Continue with Apple',
+                      buttonIcon: FaIcon(
+                        FontAwesomeIcons.apple,
+                      ),
+                    ),
+                  ],
+                  if (orientation == Orientation.landscape) ...[
+                    Row(
+                      children: [
+                        Expanded(
+                          child: AuthButton(
+                            onTap: () => _onEmailTap(context),
+                            buttonTitle: 'Use email & password',
+                            buttonIcon: FaIcon(
+                              FontAwesomeIcons.user,
+                            ),
+                          ),
+                        ),
+                        Gaps.h14,
+                        Expanded(
+                          child: AuthButton(
+                            onTap: () {},
+                            buttonTitle: 'Continue with Apple',
+                            buttonIcon: FaIcon(
+                              FontAwesomeIcons.apple,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                  ]
+                ],
+              ),
+            ),
+          ),
+          bottomNavigationBar: BottomAppBar(
+            color: Colors.grey.shade50,
+            elevation: 2,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Gaps.v52,
                 Text(
-                  'Sign Up for TicTok',
+                  'Already have an account?',
                   style: TextStyle(
-                    fontSize: Sizes.size24,
-                    fontWeight: FontWeight.w600,
+                    fontSize: Sizes.size14,
                   ),
                 ),
-                Gaps.v24,
-                Text(
-                  'Create a profile, follow other accounts, make your own videos, and more.',
-                  style: TextStyle(
-                    fontSize: Sizes.size16,
-                    color: Colors.black54,
+                Gaps.h5,
+                GestureDetector(
+                  onTap: () => _onLoginTap(context),
+                  child: Text(
+                    'Log in',
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: Sizes.size14,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                Gaps.v40,
-                AuthButton(
-                  onTap: () => _onEmailTap(context),
-                  buttonTitle: 'Use email & password',
-                  buttonIcon: FaIcon(
-                    FontAwesomeIcons.user,
-                  ),
-                ),
-                Gaps.v14,
-                AuthButton(
-                  onTap: () {},
-                  buttonTitle: 'Continue with Apple',
-                  buttonIcon: FaIcon(
-                    FontAwesomeIcons.apple,
-                  ),
-                ),
+                )
               ],
             ),
           ),
-        ),
-        bottomNavigationBar: BottomAppBar(
-          color: Colors.grey.shade50,
-          elevation: 2,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Already have an account?',
-                style: TextStyle(
-                  fontSize: Sizes.size14,
-                ),
-              ),
-              Gaps.h5,
-              GestureDetector(
-                onTap: () => _onLoginTap(context),
-                child: Text(
-                  'Log in',
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: Sizes.size14,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }

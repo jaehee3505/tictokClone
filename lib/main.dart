@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:tictok_app/constants/Sizes.dart';
+import 'package:tictok_app/features/authentication/sign_up_screen.dart';
 import 'package:tictok_app/features/inbox/activity_screen.dart';
 import 'package:tictok_app/features/main_navigation/main_navigation_screen.dart';
 import 'package:tictok_app/features/onboarding/interests_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+
   runApp(
     const TicTokApp(),
   );
@@ -20,6 +28,7 @@ class TicTokApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
           splashColor: Colors.transparent, // 스플레시 효과 사라짐
           // highlightColor: Colors.transparent, // 버튼 눌렀을때 물감혀과 사라짐
@@ -44,7 +53,7 @@ class TicTokApp extends StatelessWidget {
           ),
           primaryColor: const Color(0xFFE9435A),
           scaffoldBackgroundColor: Colors.white),
-      home: MainNavigationScreen(), //SignUpScreen(),
+      home: SignUpScreen(),
     );
   }
 }
