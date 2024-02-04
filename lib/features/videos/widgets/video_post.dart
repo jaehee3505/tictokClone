@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tictok_app/constants/Sizes.dart';
@@ -24,8 +25,7 @@ class VideoPost extends StatefulWidget {
 
 class _VideoPostState extends State<VideoPost>
     with SingleTickerProviderStateMixin {
-  final VideoPlayerController _videoPlayerController =
-      VideoPlayerController.asset('assets/videos/videoSample01.mp4');
+  late final VideoPlayerController _videoPlayerController;
   late final AnimationController _animationController;
   bool _isSeeMore = false;
   bool _isPaused = false;
@@ -40,8 +40,13 @@ class _VideoPostState extends State<VideoPost>
   }
 
   void _initVideoPlayer() async {
+    _videoPlayerController =
+        VideoPlayerController.asset('assets/videos/videoSample01.mp4');
     await _videoPlayerController.initialize();
     await _videoPlayerController.setLooping(true);
+    if (kIsWeb) {
+      await _videoPlayerController.setVolume(0);
+    }
     setState(() {});
     _videoPlayerController.addListener(_onVideoChange);
   }
