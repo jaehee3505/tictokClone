@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
+import 'package:tictok_app/main.dart';
 
 class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({super.key});
@@ -15,105 +18,106 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       physics: BouncingScrollPhysics(), //아래로 스크롤시 땡겨지는 것 추가
       slivers: [
         SliverAppBar(
-          pinned: true,
-          stretch: true,
-          backgroundColor: Colors.teal,
-          elevation: 1,
-          collapsedHeight: 80,
-          expandedHeight: 200,
-          flexibleSpace: FlexibleSpaceBar(
-            stretchModes: [
-              StretchMode.blurBackground,
-              StretchMode.zoomBackground,
-              StretchMode.fadeTitle,
-            ],
-            titlePadding:
-                const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-            title: Text('hello'),
-            centerTitle: true,
-            background: Image.asset(
-              'assets/images/sample.png',
-              fit: BoxFit.cover,
-            ),
-          ),
+          title: Text('네로'),
+          actions: [
+            IconButton(
+                onPressed: () {},
+                icon: FaIcon(
+                  FontAwesomeIcons.gear,
+                  size: Sizes.size20,
+                )),
+          ],
         ),
         SliverToBoxAdapter(
           child: Column(children: [
             CircleAvatar(
-              backgroundColor: Colors.red,
-              radius: 20,
+              radius: 50,
+              foregroundColor: Colors.teal,
+              foregroundImage: NetworkImage(MYGITHUBIMAGE),
+              child: Text('네로'),
+            ),
+            Gaps.v20,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '@네로',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: Sizes.size18,
+                  ),
+                ),
+                Gaps.h5,
+                FaIcon(
+                  FontAwesomeIcons.solidCircleCheck,
+                  size: Sizes.size18,
+                  color: Colors.blue.shade500,
+                ),
+              ],
+            ),
+            Gaps.v24,
+            SizedBox(
+              height: Sizes.size56,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  UsersLikes(),
+                  VerticalDivider(
+                    width: Sizes.size32,
+                    color: Colors.grey.shade400,
+                    thickness: Sizes.size1,
+                    indent: Sizes.size14,
+                    endIndent: Sizes.size14,
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        '9723',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: Sizes.size18,
+                        ),
+                      ),
+                      Gaps.v5,
+                      Text('following',
+                          style: TextStyle(
+                            color: Colors.grey.shade500,
+                          ))
+                    ],
+                  ),
+                  VerticalDivider(
+                    width: Sizes.size32,
+                    color: Colors.grey.shade400,
+                    thickness: Sizes.size1,
+                    indent: Sizes.size14,
+                    endIndent: Sizes.size14,
+                  ),
+                  UsersLikes(),
+                ],
+              ),
             )
           ]),
-        ),
-        SliverFixedExtentList(
-          // 위로 땡겼을때 줄어들게 해주는 것 추가
-          delegate: SliverChildBuilderDelegate(
-            childCount: 50,
-            (context, index) => Container(
-              color: Colors.amber[100 * (index % 9)],
-              child: Align(
-                alignment: Alignment.center,
-                child: Text('item $index'),
-              ),
-            ),
-          ),
-          itemExtent: 100,
-        ),
-        SliverPersistentHeader(
-          delegate: CustomDelegate(),
-          pinned: true,
-        ),
-        SliverGrid(
-          delegate: SliverChildBuilderDelegate(
-            childCount: 50,
-            (context, index) => Container(
-              color: Colors.blue[100 * (index % 9)],
-              child: Align(
-                alignment: Alignment.center,
-                child: Text('item $index'),
-              ),
-            ),
-          ),
-          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 100,
-            mainAxisSpacing: Sizes.size20,
-            crossAxisSpacing: Sizes.size20,
-            childAspectRatio: 1,
-          ),
         )
       ],
     );
   }
-}
 
-class CustomDelegate extends SliverPersistentHeaderDelegate {
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: Colors.indigo,
-      child: FractionallySizedBox(
-        heightFactor: 1,
-        child: Center(
-            child: Text(
-          'Title!!!',
+  Column UsersLikes() {
+    return Column(
+      children: [
+        Text(
+          '11297',
           style: TextStyle(
-            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: Sizes.size18,
           ),
-        )),
-      ),
-    ); //throw UnimplementedError();
-  }
-
-  @override
-  double get maxExtent => 100; //throw UnimplementedError();
-
-  @override
-  double get minExtent => 50; //throw UnimplementedError();
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    return false;
-    //throw UnimplementedError();
+        ),
+        Gaps.v,
+        Text('Likes',
+            style: TextStyle(
+              color: Colors.grey.shade500,
+            ))
+      ],
+    );
   }
 }
