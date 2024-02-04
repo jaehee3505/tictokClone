@@ -50,6 +50,9 @@ class TicTokApp extends StatelessWidget {
               fontSize: Sizes.size16 + Sizes.size2,
             ),
           ),
+          listTileTheme: ListTileThemeData(
+            iconColor: Colors.black,
+          ),
           tabBarTheme: TabBarTheme(
             unselectedLabelColor: Colors.grey.shade500,
             labelColor: Colors.black,
@@ -76,6 +79,7 @@ class TicTokApp extends StatelessWidget {
           backgroundColor: Colors.grey.shade900,
         ),
         bottomAppBarTheme: BottomAppBarTheme(
+          elevation: 0,
           color: Colors.grey.shade900,
         ),
         primaryColor: const Color(0xFFE9435A),

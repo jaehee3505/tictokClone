@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tictok_app/constants/Gaps.dart';
 import 'package:tictok_app/constants/Sizes.dart';
+import 'package:tictok_app/utils.dart';
 
 class VideoComments extends StatefulWidget {
   const VideoComments({super.key});
@@ -32,6 +33,7 @@ class _VideoCommentsState extends State<VideoComments> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = isDarkMode(context);
     final size = MediaQuery.of(context).size;
     return Container(
       clipBehavior: Clip.hardEdge,
@@ -40,9 +42,9 @@ class _VideoCommentsState extends State<VideoComments> {
         borderRadius: BorderRadius.circular(25),
       ),
       child: Scaffold(
-        backgroundColor: Colors.grey.shade50,
+        backgroundColor: isDark ? null : Colors.grey.shade50,
         appBar: AppBar(
-          backgroundColor: Colors.grey.shade50,
+          backgroundColor: isDark ? null : Colors.grey.shade50,
           automaticallyImplyLeading: false,
           actions: [
             IconButton(
@@ -76,6 +78,7 @@ class _VideoCommentsState extends State<VideoComments> {
                       CircleAvatar(
                         radius: 18,
                         child: Text('네로'),
+                        backgroundColor: isDark ? Colors.grey.shade800 : null,
                       ),
                       Gaps.h10,
                       Expanded(
@@ -121,7 +124,6 @@ class _VideoCommentsState extends State<VideoComments> {
                     horizontal: Sizes.size16,
                     vertical: Sizes.size10,
                   ),
-                  color: Colors.white,
                   child: Row(children: [
                     CircleAvatar(
                       radius: 18,
@@ -150,17 +152,23 @@ class _VideoCommentsState extends State<VideoComments> {
                                     children: [
                                       FaIcon(
                                         FontAwesomeIcons.at,
-                                        color: Colors.grey.shade900,
+                                        color: isDark
+                                            ? Colors.grey.shade500
+                                            : Colors.grey.shade900,
                                       ),
                                       Gaps.h14,
                                       FaIcon(
                                         FontAwesomeIcons.gift,
-                                        color: Colors.grey.shade900,
+                                        color: isDark
+                                            ? Colors.grey.shade500
+                                            : Colors.grey.shade900,
                                       ),
                                       Gaps.h14,
                                       FaIcon(
                                         FontAwesomeIcons.faceSmile,
-                                        color: Colors.grey.shade900,
+                                        color: isDark
+                                            ? Colors.grey.shade500
+                                            : Colors.grey.shade900,
                                       ),
                                       Gaps.h14,
                                       if (_isWriting)
@@ -185,7 +193,9 @@ class _VideoCommentsState extends State<VideoComments> {
                                 horizontal: Sizes.size12,
                                 vertical: Sizes.size10,
                               ),
-                              fillColor: Colors.grey.shade200),
+                              fillColor: isDark
+                                  ? Colors.grey.shade800
+                                  : Colors.grey.shade200),
                         ),
                       ),
                     ),
