@@ -14,9 +14,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       physics: BouncingScrollPhysics(), //아래로 스크롤시 땡겨지는 것 추가
       slivers: [
         SliverAppBar(
-          //floating: true,
+          snap: true,
+          floating: true,
+          pinned: true,
           stretch: true,
-          pinned: true, //타이틀은 안사라지게 함
           backgroundColor: Colors.teal,
           elevation: 1,
           collapsedHeight: 80,
@@ -24,8 +25,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           flexibleSpace: FlexibleSpaceBar(
               stretchModes: [
                 StretchMode.blurBackground,
-                StretchMode.fadeTitle,
                 StretchMode.zoomBackground,
+                StretchMode.fadeTitle,
               ],
               titlePadding:
                   const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
@@ -39,9 +40,14 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         SliverFixedExtentList(
           // 위로 땡겼을때 줄어들게 해주는 것 추가
           delegate: SliverChildBuilderDelegate(
-            (context, index) => Container(),
+            childCount: 50,
+            (context, index) => Container(
+              color: Colors.amber[100 * (index % 9)],
+              child: Align(
+                  alignment: Alignment.center, child: Text('item $index')),
+            ),
           ),
-          itemExtent: 1,
+          itemExtent: 100,
         ),
       ],
     );
