@@ -91,62 +91,69 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               crossAxisSpacing: Sizes.size10,
               mainAxisSpacing: Sizes.size10,
             ),
-            itemBuilder: (context, index) => Column(
-              children: [
-                Container(
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      Sizes.size4,
-                    ),
-                  ),
-                  child: AspectRatio(
-                    aspectRatio: 9 / 16,
-                    child: FadeInImage.assetNetwork(
-                      fit: BoxFit.cover,
-                      placeholder: 'assets/images/sample.png',
-                      image:
-                          "https://images.unsplash.com/photo-1673844969019-c99b0c933e90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80",
-                    ),
-                  ),
-                ),
-                Gaps.v10,
-                Text(
-                    'sfdsfddsfdsfdsfdsssdfsdfdsfwesfsfefesseffsdfsdfsdfsfsfsefsdffdsfdsfdsfds',
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        fontSize: Sizes.size10, fontWeight: FontWeight.bold)),
-                Gaps.v5,
-                DefaultTextStyle(
-                  style: TextStyle(color: Colors.grey.shade500),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 12,
-                        backgroundImage: NetworkImage(MYGITHUBIMAGE),
+            itemBuilder: (context, index) => LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+                return Column(
+                  children: [
+                    Container(
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          Sizes.size4,
+                        ),
                       ),
-                      Gaps.h4,
-                      Expanded(
-                          child: Text(
-                        'MyAvatar is going to be very long',
-                        maxLines: 1,
+                      child: AspectRatio(
+                        aspectRatio: 9 / 16,
+                        child: FadeInImage.assetNetwork(
+                          fit: BoxFit.cover,
+                          placeholder: 'assets/images/sample.png',
+                          image:
+                              "https://images.unsplash.com/photo-1673844969019-c99b0c933e90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80",
+                        ),
+                      ),
+                    ),
+                    Gaps.v10,
+                    Text(
+                        '${constraints.maxWidth}sfdsfddsfdsfdsfdsssdfsdfdsfwesfsfefesseffsdfsdfsdfsfsfsefsdffdsfdsfdsfds',
+                        maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                      )),
-                      Gaps.h4,
-                      FaIcon(
-                        FontAwesomeIcons.heart,
-                        size: Sizes.size14,
-                        color: Colors.grey.shade500,
-                      ),
-                      Gaps.h2,
-                      Text(
-                        '2.5M',
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                        style: TextStyle(
+                            fontSize: Sizes.size10,
+                            fontWeight: FontWeight.bold)),
+                    Gaps.v5,
+                    if (constraints.maxWidth < 200 ||
+                        constraints.maxWidth > 250)
+                      DefaultTextStyle(
+                        style: TextStyle(color: Colors.grey.shade500),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 12,
+                              backgroundImage: NetworkImage(MYGITHUBIMAGE),
+                            ),
+                            Gaps.h4,
+                            Expanded(
+                                child: Text(
+                              'MyAvatar is going to be very long',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            )),
+                            Gaps.h4,
+                            FaIcon(
+                              FontAwesomeIcons.heart,
+                              size: Sizes.size14,
+                              color: Colors.grey.shade500,
+                            ),
+                            Gaps.h2,
+                            Text(
+                              '2.5M',
+                            ),
+                          ],
+                        ),
+                      )
+                  ],
+                );
+              },
             ),
           ),
           for (var tab in tabs.skip(1))
