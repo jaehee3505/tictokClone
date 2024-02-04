@@ -114,6 +114,52 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ]));
             },
           ),
+          ListTile(
+            title: Text('logout(Ios/bottom)'),
+            textColor: Colors.red,
+            onTap: () {
+              showCupertinoModalPopup(
+                  context: context,
+                  builder: (context) => CupertinoActionSheet(
+                          message: Text('pleease dont go'),
+                          title: Text('Are you sure?'),
+                          actions: [
+                            CupertinoActionSheetAction(
+                              isDefaultAction: true,
+                              onPressed: () => Navigator.of(context).pop(),
+                              child: Text('Not LogOut'),
+                            ),
+                            CupertinoActionSheetAction(
+                              onPressed: () => Navigator.of(context).pop(),
+                              child: Text('Yes Please'),
+                              isDestructiveAction: true,
+                            ),
+                          ]));
+            },
+          ),
+          ListTile(
+            title: Text('logout(Ios/bottom)'),
+            textColor: Colors.red,
+            onTap: () {
+              showCupertinoDialog(
+                  context: context,
+                  builder: (context) => CupertinoActionSheet(
+                          message: Text('pleease dont go'),
+                          title: Text('Are you sure?'),
+                          actions: [
+                            CupertinoActionSheetAction(
+                              isDefaultAction: true,
+                              onPressed: () => Navigator.of(context).pop(),
+                              child: Text('Not LogOut'),
+                            ),
+                            CupertinoActionSheetAction(
+                              onPressed: () => Navigator.of(context).pop(),
+                              child: Text('Yes Please'),
+                              isDestructiveAction: true,
+                            ),
+                          ]));
+            },
+          ),
           AboutListTile(),
         ],
       ),
