@@ -9,6 +9,7 @@ import 'package:tictok_app/features/main_navigation/widgets/navigation_tab.dart'
 import 'package:tictok_app/features/main_navigation/widgets/post_video_button.dart';
 import 'package:tictok_app/features/users/user_profile_screen.dart';
 import 'package:tictok_app/features/videos/timeline_screen.dart';
+import 'package:tictok_app/utils.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -36,6 +37,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDark = isDarkMode(context);
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: _selectedIndex == 0 ? Colors.black : Colors.white,
@@ -58,7 +61,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         ),
       ]),
       bottomNavigationBar: BottomAppBar(
-        color: _selectedIndex == 0 ? Colors.black : Colors.white,
+        color: _selectedIndex == 0 || isDark ? Colors.black : Colors.white,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -79,7 +82,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             Gaps.h24,
             GestureDetector(
                 onTap: _onPostVideoButtonTap,
-                child: PostVideoButton(inverted: _selectedIndex == 0)),
+                child:
+                    PostVideoButton(inverted: _selectedIndex == 0 || isDark)),
             Gaps.h24,
             NavigationTap(
                 onTap: () => onNavigationTap(3),

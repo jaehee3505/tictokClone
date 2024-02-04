@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tictok_app/constants/Sizes.dart';
 import 'package:tictok_app/constants/breakpoints.dart';
 import 'package:tictok_app/main.dart';
+import 'package:tictok_app/utils.dart';
 
 import '../../constants/Gaps.dart';
 
@@ -62,6 +63,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               maxWidth: Breakpoints.sm,
             ),
             child: CupertinoSearchTextField(
+              style: TextStyle(
+                  color: isDarkMode(context) ? Colors.white : Colors.black),
               controller: _textEditingController,
               onChanged: _onSearchChanged,
               onSubmitted: _onSearchSubmitted,
@@ -77,9 +80,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               fontWeight: FontWeight.w600,
               fontSize: Sizes.size16,
             ),
-            unselectedLabelColor: Colors.grey.shade500,
-            labelColor: Colors.black,
-            indicatorColor: Colors.black,
+
             tabs: [
               for (var tab in tabs) Tab(text: tab),
             ],
@@ -119,7 +120,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     ),
                     Gaps.v10,
                     Text(
-                        '${constraints.maxWidth}sfdsfddsfdsfdsfdsssdfsdfdsfwesfsfefesseffsdfsdfsdfsfsfsefsdffdsfdsfdsfds',
+                        'sfdsfddsfdsfdsfdsssdfsdfdsfwesfsfefesseffsdfsdfsdfsfsfsefsdffdsfdsfdsfds',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -129,7 +130,10 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                     if (constraints.maxWidth < 200 ||
                         constraints.maxWidth > 250)
                       DefaultTextStyle(
-                        style: TextStyle(color: Colors.grey.shade500),
+                        style: TextStyle(
+                            color: isDarkMode(context)
+                                ? Colors.grey.shade300
+                                : Colors.grey.shade600),
                         child: Row(
                           children: [
                             CircleAvatar(
