@@ -13,13 +13,37 @@ class SettingsScreen extends StatelessWidget {
       body: ListView(
         children: [
           ListTile(
-            onTap: () => showAboutDialog(
+            onTap: () async {
+              final date = await showDatePicker(
                 context: context,
-                applicationVersion: '1.0',
-                applicationLegalese: 'all rightss'),
+                firstDate: DateTime(1998),
+                lastDate: DateTime(2030),
+                initialDate: DateTime.now(),
+              );
+              print(date);
+              final time = await showTimePicker(
+                context: context,
+                initialTime: TimeOfDay.now(),
+              );
+              print(time);
+              final booking = await showDateRangePicker(
+                  context: context,
+                  firstDate: DateTime(1930),
+                  lastDate: DateTime(2030),
+                  builder: (context, child) {
+                    return Theme(
+                      child: child!,
+                      data: ThemeData(
+                          appBarTheme: AppBarTheme(
+                        foregroundColor: Colors.red,
+                        backgroundColor: Colors.blue,
+                      )),
+                    );
+                  });
+              print(booking);
+            },
             title: Text(
-              'aoube',
-              style: TextStyle(fontWeight: FontWeight.w600),
+              'what is your birthday?',
             ),
             subtitle: Text('about this app...'),
           ),
