@@ -61,7 +61,10 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
           child: UserProfileScreen(),
         ),
       ]),
-      bottomNavigationBar: BottomAppBar(
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.symmetric(
+          vertical: Sizes.size32,
+        ),
         color: _selectedIndex == 0 || isDark ? Colors.black : Colors.white,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

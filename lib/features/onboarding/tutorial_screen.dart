@@ -128,7 +128,7 @@ class _MyWidgetState extends State<TutorialScreen> {
             duration: Duration(milliseconds: 300),
           ),
         ),
-        bottomNavigationBar: BottomAppBar(
+        bottomNavigationBar: Container(
           padding: EdgeInsets.symmetric(
             horizontal: 20,
             vertical: 20,

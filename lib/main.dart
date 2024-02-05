@@ -32,6 +32,7 @@ class TicTokApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
       theme: ThemeData(
+          useMaterial3: true,
           brightness: Brightness.light,
           textTheme: Typography.blackMountainView,
           splashColor: Colors.transparent, // 스플레시 효과 사라짐
@@ -40,6 +41,7 @@ class TicTokApp extends StatelessWidget {
             cursorColor: const Color(0xFFE9435A),
           ),
           appBarTheme: AppBarTheme(
+            surfaceTintColor: Colors.white,
             foregroundColor: Colors.black,
             backgroundColor: Colors.white,
             centerTitle: true,
@@ -66,6 +68,7 @@ class TicTokApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white),
 
       darkTheme: ThemeData(
+        useMaterial3: true,
         tabBarTheme: TabBarTheme(
           indicatorColor: Colors.white,
         ),
@@ -76,6 +79,12 @@ class TicTokApp extends StatelessWidget {
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
         appBarTheme: AppBarTheme(
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            fontSize: Sizes.size16 + Sizes.size2,
+          ),
+          surfaceTintColor: Colors.white,
           backgroundColor: Colors.grey.shade900,
         ),
         bottomAppBarTheme: BottomAppBarTheme(
